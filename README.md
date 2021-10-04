@@ -3,4 +3,4 @@
 
 Python Activities - University Class.
 
-Feel free to check the source codes provided, just do what ever you want and dont disturb me by sending messages/emails
+- 📢 Do what ever you want in the code, just don't disturb me by sending messages or emails
