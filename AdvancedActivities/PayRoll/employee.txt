@@ -1,0 +1,8 @@
+e0001,alpha,bravo,f1
+e0002,victor,zulu,f2
+e0003,charlie,delta,c1
+e0004,echo,foxtrot,c1
+e0005,golf,india,m1
+e0006,juliet,kilo,m1
+e0007,lima,mike,m1
+e0008,november,oscar,m2

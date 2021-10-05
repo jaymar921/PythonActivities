@@ -1,0 +1,6 @@
+f1,foreman 1,750.50
+f2,foreman 2,850.50
+c1,carpenter 1,600.00
+c2,carpenter 2,700.50
+m1,mason 1,500.00
+m2,mason 2,600.50
