@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge,Chrome=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<title>StudentList</title>
+</head>
+<body>
+	<div class="w3-bar w3-container w3-padding-16 w3-indigo w3-card-4">
+		<h3>STUDENT LIST</h3>
+	</div>
+	<br>
+	<div class="w3-container">
+		<table class="w3-table-all w3-card-4 w3-animate-top">
+			<tr>
+				{% for h in header %}
+					<th>
+						{{h}}
+					</th>
+				{% endfor %}
+			</tr>
+			{% for item in list %}
+				<tr>
+						{% for key, value in item.items() %}
+							<td>
+								{{value}}
+							</td>
+						{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+</body>
+</html>
