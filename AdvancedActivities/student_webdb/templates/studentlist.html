@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block pageheader %}{{title}}{% endblock %}
+{% block content %}
+	<button class="w3-button w3-blue" onclick="document.getElementById('studentmodal').style.display='block'">+ ADD</button>
+	<table class="w3-table-all">
+		<tr>
+			{% for h in header %}
+				<th>{{ h | upper }}</th>
+			{% endfor %}
+		</tr>
+		{% for student in studentlist | sort(attribute='lastname') %}
+		<tr>
+			{% for key,value in student.items() %}
+			<td>
+				{{ value | upper }}
+			</td>
+			{% endfor %}
+			<td>
+				<button onclick="deletestudent({{student['id']}})">&times;</button>
+				<button>&#9998;</button>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="w3-modal" id ="studentmodal"> 
+		<div class = "w3-modal-content w3-animate-top">
+			<div class = "w3-container w3-blue">
+				<h3>STUDENT</h3>
+				<button class="w3-button w3-display-topright" onclick="document.getElementById('studentmodal').style.display='none'">&times;</button>
+			</div>
+			<div class="w3-container">
+				<form action="/addstudent" method="post">
+					<p>
+						<label>IDNO</label>
+						<input type="text" class="w3-input w3-border" name="idno" id="idno">
+					</p>
+					<p>
+						<label>LASTNAME</label>
+						<input type="text" class="w3-input w3-border" name="lastname" id="lastname">
+					</p>
+					<p>
+						<label>FIRSTNAME</label>
+						<input type="text" class="w3-input w3-border" name="firstname" id="firstname">
+					</p>
+					<p>
+						<label>COURSE</label>
+						<select class="w3-select w3-border" name="course" id="course">
+							<option value = "bsit">INFORMATION TECHNOLOGY</option>
+							<option value = "bsis">INFORMATION SYSTEMS</option>
+							<option value = "bscpe">COMPUTER ENGINEERING</option>
+							<option value = "bscs">COMPUTER SCIENCE</option>
+						</select>
+					</p>
+					<p>
+						<label>LEVEL</label>
+						<select class="w3-select w3-border" name="level" id="level">
+							<option value = "1">1</option>
+							<option value = "2">2</option>
+							<option value = "3">3</option>
+							<option value = "4">4</option>
+						</select>
+					</p>
+					<p>
+						<input class="w3-button w3-border w3-blue" type="submit" value="SAVE">
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
