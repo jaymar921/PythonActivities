@@ -3,7 +3,16 @@
 {% block pageheader %}{{title}}{% endblock %}
 {% block content %}
 	<button class="w3-button w3-blue" onclick="add_student()">+ ADD</button>
-	<p><br></p>
+	<p>
+		<!--messaging panel-->
+		{% if message!="ok" %}
+		<div class="w3-panel w3-khaki w3-right w3-animate-right">
+			<h4>
+				{{ message }}
+			</h4>
+		</div>
+		{% endif %}
+	</p>
 	<table class="w3-table-all">
 		<tr>
 			{% for h in pageheader %}
