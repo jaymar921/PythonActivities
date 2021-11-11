@@ -27,11 +27,11 @@ def SAVE_DB(data:dict)->int:
 		DATABASE.commit()
 		cursor.close()	
 	except Exception:
-		return 1
+		return 1 # Error if return code 1
 	if '-' in flag:
-		return 0
+		return 0 # New Student added if return code 0
 	else:
-		return 2
+		return 2 # Update Student if return code 2
 
 def DELETE_STUDENT(idno:int):
 	try:

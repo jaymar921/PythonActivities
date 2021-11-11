@@ -4,11 +4,15 @@ from database import SAVE_DB,DELETE_STUDENT,GETALL
 app = Flask(__name__)
 
 
-@app.route("/studentlist")
-def studentlist():
+@app.route("/studentlist/<message>")
+def studentlist(message:str):
     hlist:list=['#','idno','lastname','firstname','course','level','action']
     slist = GETALL()
-    return render_template("studentlist.html",title="studentlist", studentlist =slist, pageheader = hlist)
+    return render_template("studentlist.html",title="studentlist", studentlist =slist, pageheader = hlist,message = message)
+
+@app.route("/studentlist")
+def studlist():
+    return redirect("studentlist/ok")
 
 @app.route("/deletestudent",methods=["GET"])
 def deletestudent():
@@ -17,7 +21,7 @@ def deletestudent():
     return redirect("studentlist")
 
 @app.route("/addstudent",methods=["POST"])
-def addstudent():
+def savestudent():
     DATA:dict = {
         "flag":request.form['flag'],
         "idno":request.form['idno'],
@@ -40,4 +44,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0",debug=True)
