@@ -7,7 +7,7 @@
 	<title>{% block title %} {% endblock %}</title>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
+<body background='{{url_for("static",filename="images/background.jpg")}}'>
 	<div class="w3-bar w3-deep-purple w3-padding w3-card-4">
 		<h3>
 			{% block pageheader %}{% endblock %}
@@ -22,12 +22,7 @@
 	<center>
 		Copyright &copy; IT-ELECTPYTHON, 2021
 	</center>
-	<script>
-		function deletestudent(id){
-			var ok = confirm("Delete this student? => "+id)
-			if(ok)
-				location.href="/deletestudent?id="+id
-		}
+	<script src="{{url_for('static', filename='javascript.js')}}">
 	</script>
 </body>
 </html>

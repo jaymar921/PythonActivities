@@ -2,10 +2,11 @@
 {% block title %}{{title}}{% endblock %}
 {% block pageheader %}{{title}}{% endblock %}
 {% block content %}
-	<button class="w3-button w3-blue" onclick="document.getElementById('studentmodal').style.display='block'">+ ADD</button>
+	<button class="w3-button w3-blue" onclick="add_student()">+ ADD</button>
+	<p><br></p>
 	<table class="w3-table-all">
 		<tr>
-			{% for h in header %}
+			{% for h in pageheader %}
 				<th>{{ h | upper }}</th>
 			{% endfor %}
 		</tr>
@@ -17,8 +18,8 @@
 			</td>
 			{% endfor %}
 			<td>
-				<button onclick="deletestudent({{student['id']}})">&times;</button>
-				<button>&#9998;</button>
+				<button onclick="deletestudent('{{student['id']}}')">&times;</button>
+				<button onclick="edit_student('{{student['id']}}','{{student['idno']}}','{{student['lastname']}}','{{student['firstname']}}','{{student['course']}}','{{student['level']}}')">&#9998;</button>
 			</td>
 		</tr>
 		{% endfor %}
@@ -30,7 +31,11 @@
 				<button class="w3-button w3-display-topright" onclick="document.getElementById('studentmodal').style.display='none'">&times;</button>
 			</div>
 			<div class="w3-container">
-				<form action="/addstudent" method="post">
+				<form action="/addstudent" method="post" name="studentform">
+					<!--Saving Flag-->
+					<!--Flag: '-' add student--->
+					<!--Flag: '1++' update student--->
+					<input type="hidden" class="w3-input w3-border" name="flag" id="flag">
 					<p>
 						<label>IDNO</label>
 						<input type="text" class="w3-input w3-border" name="idno" id="idno">
@@ -67,6 +72,5 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
 {% endblock %}
