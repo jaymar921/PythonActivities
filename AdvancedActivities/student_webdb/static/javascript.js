@@ -1,7 +1,8 @@
 function deletestudent(id){
 	var ok = confirm("Delete this student? => "+id)
-	if(ok)
+	if(ok){
 		location.href="/deletestudent?id="+id
+	}
 }
 function edit_student(id,idno,lastname,firstname,course,level){
 	document.forms['studentform']['flag'].value = id;
@@ -17,9 +18,9 @@ function edit_student(id,idno,lastname,firstname,course,level){
 	document.getElementById('course').value=course;
 	document.getElementById('level').value=level;
 	*/
-	document.getElementById('studentmodal').style.display='block';
+	document.getElementById('studentmodal').style.display='block'
 }
 function add_student(){
 	document.forms['studentform']['flag'].value = '-'
-	document.getElementById('studentmodal').style.display='block';
+	document.getElementById('studentmodal').style.display='block'
 }
