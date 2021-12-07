@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block pageheader %}{{title | upper}}{% endblock %}
+{% block menubar %}
+	<div class="w3-indigo">
+
+		<button class="w3-button w3-right" style="background: #460000;">
+			<a href="/logout">LOG-OUT</a>
+		</button>
+		<button class="w3-button w3-right" style="margin-right: 10px; background: #460000;" onclick="display_employee()">DISPLAY EMPLOYEE</button>
+	</div>
+{% endblock %}
+{% block content %}
+	
+	<p>
+	</p>
+	<table class="w3-table-all">
+		<tr>
+			{% for h in pageheader %}
+				<th>{{ h | upper }}</th>
+			{% endfor %}
+		</tr>
+		{% for employee in studentlist | sort(attribute='lastname') %}
+		<tr>
+			{% for key,value in employee.items() %}
+			<td>
+				{{ value | upper }}
+			</td>
+			{% endfor %}
+			<td>
+				<button onclick="delete_payroll('{{employee['id']}}')">DELETE &#9998;</button>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="w3-modal" id ="MODAL"> 
+		<div class = "w3-modal-content w3-animate-top">
+			<div class = "w3-container w3-blue">
+				<h3>STUDENT</h3>
+				<button class="w3-button w3-display-topright" onclick="document.getElementById('MODAL').style.display='none'">&times;</button>
+			</div>
+			<div class="w3-container">
+				<form action="/generate_payroll" method="post" name="studentform">
+					<!--Saving Flag-->
+					<!--Flag: '-' add student--->
+					<!--Flag: '1++' update student--->
+					<input type="hidden" class="w3-input w3-border" name="flag" id="flag">
+					<input type="hidden" class="w3-input w3-border" name="rate" id="rate">
+					<p>
+						<label>IDNO</label>
+						<input type="text" class="w3-input w3-border" name="idno" id="idno">
+					</p>
+					<p>
+						<label>NAME</label>
+						<input type="text" class="w3-input w3-border" name="name" id="name">
+					</p>
+					<p>
+						<label>DAILY RATE</label>
+						<input type="text" class="w3-input w3-border" name="d_r" id="d_r" disabled>
+					</p>
+					<p>
+						<label>DATE FROM</label>
+						<input type="date" name="date_from">
+					</p>
+					<p>
+						<label>DATE TO</label>
+						<input type="date" name="date_to">
+					</p>
+					<p>
+						<label>NUMBER OF DAY(S) WORKED</label>
+						<input type="number" name="days" id="days"> 
+					</p>
+					<p>
+						<label>TOTAL SALARY</label>
+						<input type="text" name="salary" id="salary">
+					</p>
+					<p>
+						<input class="w3-button w3-border w3-blue" type="submit" value="SAVE">
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>	
+{% endblock %}

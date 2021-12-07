@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block pageheader %}{{title}}{% endblock %}
+{% block content %}
+
+	<div class="w3-panel w3-animate-top" style="width: 40%; margin: auto;">
+		<div class="w3-container" style="background: #460000;">
+			<h3 style="color: wheat; font-size: 1.5em;">USER LOGIN</h3>
+		</div>
+		<div class="w3-container w3-white w3-card-4">
+			{% if mess!="ok" %}
+			<div class="w3-panel w3-khaki w3-center w3-animate-right">
+				{{ mess }}
+			</div>
+			{% endif %}
+			<form action="/login" method="post">
+				<p>
+					<label>USERNAME</label>
+					<input type="text" class="w3-input w3-border" name="username" id="username" placeholder="&#128100; USERNAME">
+				</p>
+				<p>
+					<label>PASSWORD</label>
+					<input type="password" class="w3-input w3-border" name="password" id="password" placeholder="&#128274; ********">
+				</p>
+				<p>
+					<input type="submit" class="w3-button w3-right" value="LOGIN &#128190;" style="background: #460000; color: white;">
+					<br><br>
+				</p>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

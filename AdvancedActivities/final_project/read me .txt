@@ -1,0 +1,40 @@
+how to use
+
+1. create your database first
+2. open cmd
+3. type 'python app.py' (without single quote)
+4. Dont forget to change the UI stype para di ko ma tidert
+
+
+---------------------------------------
+------- CREATING DATABASE--------------
+Database name: python_employee
+
+table: employee
+id int primary key auto_increment,
+idno varchar(10),
+lastname varchar(30),
+firstname varchar(30),
+position_code varchar(2)
+
+
+table: payroll
+id int primary key auto_increment,
+idno varchar(10),
+name varchar(50),
+daily_rate varchar(20),
+date_from date,
+date_to date,
+days int(11),
+salary double(11,2)
+
+table: position
+id int primary key auto_increment,
+position_code varchar(2),
+position_desc varchar(30),
+daily_rate varchar(20)
+
+table: user
+id int primary key auto_increment,
+username varchar(30),
+password varchar(30)
