@@ -9,4 +9,4 @@
 
 # Final Project
 > - Flask Implementation with MySQL database
-<p align="center"><img src="https://github.com/jaymar921/PythonActivities/blob/main/AdvancedActivities/final_project/Login%20Screen.png" width="960" height="540"></p>
+<p align="center"><img src="https://github.com/jaymar921/PythonActivities/blob/main/AdvancedActivities/final_project/Login%20Screen.png" width="1920" height=auto></p>
