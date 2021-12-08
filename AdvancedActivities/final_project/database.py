@@ -83,10 +83,12 @@ def SAVE_PAYROLL(data:dict)->int:
 	date_from:str = data.get('date_from')
 	date_to:str = data.get('date_to')
 	days:str = data.get('days')
-	salary:str = data.get('salary')
+	salary:str = data.get('salary')[1:]
 
+	if len(salary.split(',')) == 2:
+		salary = salary.split(',')[0] + salary.split(',')[1]
 	try:
-		sql:str = f"insert into `payroll` (`idno`,`name`,`daily_rate`,`date_from`,`date_to`,`days`,`salary`) value ('{idno}','{name}','{rate}','{date_from}','{date_to}',{days},{salary})"
+		sql:str = f"insert into `payroll` (`idno`,`name`,`daily_rate`,`date_from`,`date_to`,`days`,`salary`) value ('{idno}','{name}','{rate}','{date_from}','{date_to}',{days},{float(salary)})"
 		cursor = DATABASE.cursor()
 		cursor.execute(sql)
 		DATABASE.commit()
@@ -105,3 +107,6 @@ def DELETE_PAYROLL(idno:int):
 	except Exception:
 		return False
 	return True
+
+def formatter(amount:float)->str:
+	return "₱{:,.2f}".format(amount)

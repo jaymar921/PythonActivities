@@ -1,8 +1,8 @@
 from flask import Flask,render_template,request,redirect,url_for,session
-from database import SAVE_DB,DELETE_STUDENT,GET_ALL,ValidateUser,SAVE_PAYROLL,GET_PAYROLL,DELETE_PAYROLL
+from database import SAVE_DB,DELETE_STUDENT,GET_ALL,ValidateUser,SAVE_PAYROLL,GET_PAYROLL,DELETE_PAYROLL,formatter
 
 app = Flask(__name__)
-app.secret_key = "39cm85yu234m98"
+app.secret_key = "fb9251922e234caf8ee7d34708f6a4c4"
 
 
 @app.route("/employeelist/<message>")
@@ -16,7 +16,7 @@ def studentlist(message:str):
 
 @app.route("/")
 def studlist():
-    return redirect("employeelist/ok")
+    return redirect(url_for("index",message="LOGIN ACCOUNT"))
 
 @app.route("/deletestudent",methods=["GET"])
 def deletestudent():
@@ -44,7 +44,7 @@ def savestudent():
 
 @app.route("/<message>")
 def index(message:str):
-    return render_template("login.html",title="STUDENT LIST",mess=message)
+    return render_template("login.html",title="EMPLOYEE LIST",mess=message)
 
 
 @app.route("/login", methods=["POST"])
@@ -78,9 +78,13 @@ def generate_payroll():
 @app.route("/display_payroll")
 def display_payroll():
     if "username" in session:
-        hlist:list=['#','idno','name','daily rate','date from','date to','number of day(s) worked', 'salary','action']
+        hlist:list=['#','idno','name','daily rate','date from','date to','day(s) worked', 'salary','action']
         slist = GET_PAYROLL()
-        return render_template("generate_payroll.html",title="Generated Payroll", studentlist =slist, pageheader = hlist)
+        new_list:list = []
+        for item in slist:
+            item['salary'] = formatter(item['salary'])
+            new_list.append(item)
+        return render_template("generate_payroll.html",title="Generated Payroll", studentlist =new_list, pageheader = hlist)
     else:
         return redirect(url_for("index",message="NO PERMISSION"))   
 
