@@ -41,9 +41,9 @@
 		{% endfor %}
 	</table>
 	<div class="w3-modal" id ="MODAL"> 
-		<div class = "w3-modal-content w3-animate-top">
-			<div class = "w3-container w3-blue">
-				<h3>GENERATE PAYROLL</h3>
+		<div class = "w3-modal-content w3-animate-top" style="width: 30%;">
+			<div class = "w3-container" style="background: #460000;">
+				<h3 style="color: white;">GENERATE PAYROLL</h3>
 				<button class="w3-button w3-display-topright" onclick="document.getElementById('MODAL').style.display='none'">&times;</button>
 			</div>
 			<div class="w3-container">
@@ -55,27 +55,37 @@
 					<input type="hidden" class="w3-input w3-border" name="rate" id="rate">
 					<p>
 						<label>IDNO</label>
-						<input type="text" class="w3-input w3-border" name="idno" id="idno">
+						<input type="text" class="w3-input w3-border" name="idno" id="idno" >
 					</p>
 					<p>
-						<label>NAME</label>
-						<input type="text" class="w3-input w3-border" name="name" id="name">
+						<div style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%;">
+							<div style="flex-grow: 1; flex-shrink: 1; flex-basis: 0%; margin-right: 10px;">
+								<label>NAME</label>
+								<input type="text" class="w3-input w3-border" name="name" id="name">
+						
+							</div>
+							<div style="flex-grow: 1; flex-shrink: 1; flex-basis: 0%;">
+								<label>DAILY RATE</label>
+								<input type="text" class="w3-input w3-border" name="d_r" id="d_r" disabled>
+							</div>
+						</div>
+						
 					</p>
 					<p>
-						<label>DAILY RATE</label>
-						<input type="text" class="w3-input w3-border" name="d_r" id="d_r" disabled>
-					</p>
-					<p>
-						<label>DATE FROM</label>
-						<input type="date" name="date_from" id="date_from">
-					</p>
-					<p>
-						<label>DATE TO</label>
-						<input type="date" name="date_to" id="date_to">
+						<div style="display: flex;">
+							<div style="flex-grow: 1; flex-shrink: 1; flex-basis: 0%;">
+								<label>DATE FROM</label>
+								<input style="width:60%" type="date" name="date_from" id="date_from">
+							</div>
+							<div style="flex-grow: 1; flex-shrink: 1; flex-basis: 0%;">
+								<label>DATE TO</label>
+								<input style="width:60%" type="date" name="date_to" id="date_to">
+							</div>
+						</div>
 					</p>
 					<p>
 						<label>NUMBER OF DAY(S) WORKED</label>
-						<input type="number" name="days" id="days"> 
+						<input type="number" name="days" id="days" min="0"> 
 					</p>
 					<p>
 						<label>TOTAL SALARY</label>

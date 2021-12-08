@@ -39,6 +39,7 @@ function generate_payroll(id,idno,lastname,firstname,position_desc,daily_rate){
 	document.getElementById('level').value=level;
 	*/
 	document.getElementById('MODAL').style.display='block'
+	my_f()
 
 }
 
@@ -48,46 +49,62 @@ function delete_payroll(id){
 		location.href="/delete_payroll?id="+id
 	}
 }
-document.getElementById("days").addEventListener("change", function(){
-		if (document.getElementById("days").value.length > 0){
-			var number_of_days = parseInt(document.getElementById("days").value);
-			
-			if(number_of_days>=0){
-				document.getElementById("salary").value = number_of_days*parseFloat(document.getElementById("rate").value)
-			}else{
-				document.getElementById("salary").value = "INVALID";
-			}
-		}
 
-	});
+const formatter = new Intl.NumberFormat('en-US', {
+                      style: 'currency',
+                      currency: 'PHP',
+                      minimumFractionDigits: 2
+                    })
+
+if(document.getElementById("days")!=null){
+	document.getElementById("days").addEventListener("change", function(){
+			update_salary();
+		});
+}
+function update_salary(){
+			if (document.getElementById("days").value.length > 0){
+				var number_of_days = parseInt(document.getElementById("days").value);
+				
+				if(number_of_days>=0){
+					document.getElementById("salary").value = formatter.format(number_of_days*parseFloat(document.getElementById("rate").value))
+				}else{
+					document.getElementById("salary").value = "INVALID";
+				}
+			}
+
+		}
+function my_f(){
+	if(document.getElementById("days")!=null){
+		document.getElementById("days").value = 1;
+		document.getElementById("salary").value = formatter.format(parseFloat(document.getElementById("rate").value)*1)
+	}
+}
 
 var today = new Date();
 
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-document.getElementById("date_to").valueAsDate = today;
 
 
-// document.getElementById("date_to").addEventListener("change", function(){
-// 		var date_from_val = document.getElementById("date_from").valueAsDate;
+if(document.getElementById("date_to")!=null){
+	document.getElementById("date_to").valueAsDate = today;
+	document.getElementById("date_from").valueAsDate = new Date(today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()));
+	document.getElementById("date_to").addEventListener("change", function() {
+		if(document.getElementById("date_from").valueAsDate!=null){
+			date_from = document.getElementById("date_from").valueAsDate;
+			date_to = document.getElementById("date_to").valueAsDate;
 
-// 		if(date_from_val!=null){
-// 			var date_from_month = parseInt((date_from_val.getMonth()+1));
-// 			var date_from_days = parseInt(date_from_val.getDate());
-// 			var date_from_year = parseInt(date_from_val.getFullYear());
+			if(date_from.getMonth()==date_to.getMonth()){
+				day_from = date_from.getDate();
+				day_to = date_to.getDate();
 
-// 			var date_to_month = parseInt((today.getMonth()+1));
-// 			var date_to_days = parseInt(today.getDate());
-// 			var date_to_year = parseInt(today.getFullYear());
-
-// 			var new_date = date_from_year+'-'+date_from_month+'-'+date_from_days
-// 			if(date_from_month > date_to_month)
-// 				new_date = date_from_year+'-'+date_to_month+'-'+date_from_days
-
-// 			document.getElementById("date_from").valueAsDate = new Date(new_date)
-
-// 		}
-
-// 	});
+				if(day_to > day_from){
+					document.getElementById("days").value = parseInt(day_to)-parseInt(day_from);
+					update_salary();
+				}
+			}
+		}
+	})
+}
 
 function display_payroll(){
 	location.href="/display_payroll"
@@ -95,5 +112,3 @@ function display_payroll(){
 function display_employee(){
 	location.href="/employeelist/ok"
 }
-
-
