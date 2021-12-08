@@ -14,21 +14,21 @@
 	
 	<p>
 	</p>
-	<table class="w3-table-all">
-		<tr>
+	<table>
+		<tr style="color: white; background: linear-gradient(#843630, #D67200);">
 			{% for h in pageheader %}
 				<th>{{ h | upper }}</th>
 			{% endfor %}
 		</tr>
 		{% for employee in studentlist | sort(attribute='lastname') %}
-		<tr>
+		<tr >
 			{% for key,value in employee.items() %}
 			<td>
 				{{ value | upper }}
 			</td>
 			{% endfor %}
 			<td>
-				<button onclick="delete_payroll('{{employee['id']}}')">DELETE &#9998;</button>
+				<button class="the_button" onclick="delete_payroll('{{employee['id']}}')"><span></span>DELETE &#9998;</button>
 			</td>
 		</tr>
 		{% endfor %}
