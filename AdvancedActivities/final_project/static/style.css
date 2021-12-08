@@ -1,3 +1,251 @@
 div div{
 	background: #0000;
 }
+
+.the_button{
+	height: 50px;
+	background: transparent;
+	border-radius: 10px;
+	border-color: #843630;
+	transition: 500ms;
+	overflow: hidden;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	padding: 5px 5px 5px 5px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+span{
+	border-radius: 5px;
+	transition: 500ms;
+	padding: auto;
+	width: 0%;
+	height: 100%;
+	background: linear-gradient(#843630, #D67200);
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+}
+
+.the_button:hover{
+	color: whitesmoke;
+}
+
+.the_button:hover span{
+	background: linear-gradient(#843630, #D67200);
+	width: 100%;
+}
+
+.shrink{
+	font-size: 1em;
+	color: white;
+	padding: 0;
+	margin: 0;
+}
+.hello_world{
+	position: absolute;
+	width: 30%;
+	left: 50%;
+	transform: translate(-50%,20%);
+	transition: 1000ms;
+}
+
+.hello{
+	display: flex; 
+	flex-grow: 1; 
+	flex-shrink: 1; 
+	flex-basis: 0%;
+}
+
+.hellooo{
+	margin-right: 10px;
+}
+
+input{
+	font-size: 1em;
+}
+
+h3{
+	font-size: 2em;
+	color: white;
+	transition: 1000ms;
+}
+
+.hello div{
+	flex-grow: 1; 
+	flex-shrink: 1; 
+	flex-basis: 0%;
+}
+
+.login_container{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 30%;
+	transition: 1000ms;
+}
+
+table{
+	border-collapse: collapse;
+	background: transparent;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 3px solid darkred;
+}
+
+table tr{
+	background: white;
+	margin: 0;
+	padding: 0;
+}
+table th{
+	font-size: 1em;
+	padding: 5px 10px 5px 10px;
+	color: white;
+}
+
+table td{
+	font-size: 20px;
+	text-align: center;
+	color: black;
+	padding: 10px 10px 10px 10px;
+}
+
+.bruh_button{
+	float: right;
+	padding: 10px 10px 10px 10px;
+	border-radius: 10px;
+	border: 0;
+	background: #460000; 
+	color: white;
+	cursor: pointer;
+	transition: 500ms;
+}
+
+.bruh_button:hover{
+	background: #990000;
+}
+
+@media (max-width: 1500px){
+	.hello{
+		display: block; 
+	}
+
+	.hello div{
+		margin-top: 5px;
+		margin-bottom: 5px ;
+	}
+
+	.hello_world{
+		width: 50%;
+	}
+
+	.shrink{
+		font-size: .8em;
+		color: white;
+		padding: 0;
+		margin: 0;
+	}
+	.login_container{
+		position: relative;
+		width: 40%;
+	}
+	input{
+		font-size: .8em;
+	}
+}
+
+@media (max-width: 1200px){
+
+	table th{
+		font-size: 0.8em;
+		padding: 5px 10px 5px 10px;
+		color: white;
+	}
+
+	table td{
+		font-size: 15px;
+		text-align: center;
+		color: black;
+		padding: 5px 5px 5px 5px;
+	}
+
+	.the_button{
+		height: 40px;
+		background: transparent;
+		border-radius: 10px;
+		border-color: #843630;
+		transition: 500ms;
+		overflow: hidden;
+		cursor: pointer;
+		position: relative;
+		z-index: 1;
+		padding: 0px 0px 0px 0px;
+	}
+
+	.shrink{
+		font-size: .7em;
+		color: white;
+		padding: 0;
+		margin: 0;
+	}
+
+	.login_container{
+		position: relative;
+		width: 50%;
+	}
+
+}
+
+@media (max-width: 700px){
+
+	table th{
+		font-size: 0.6em;
+		padding: 5px 10px 5px 10px;
+		color: white;
+	}
+
+	table td{
+		font-size: 12px;
+		text-align: center;
+		color: black;
+		padding: 0px 0px 0px 0px;
+	}
+	.the_button{
+		height: 40px;
+		background: transparent;
+		border-radius: 10px;
+		border-color: #843630;
+		transition: 500ms;
+		overflow: hidden;
+		cursor: pointer;
+		position: relative;
+		z-index: 1;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		padding: 0px 0px 0px 0px;
+	}
+	.shrink{
+		text-align: center;
+		font-size: .7em;
+		color: white;
+		padding: 0;
+		margin: 0;
+	}
+
+	.login_container{
+		position: relative;
+		width: 60%;
+	}
+
+	h3{
+		font-size: 1em;
+	}
+
+}
+
+

@@ -1,3 +1,30 @@
+function deletestudent(id){
+	var ok = confirm("Delete this student? => "+id)
+	if(ok){
+		location.href="/deletestudent?id="+id
+	}
+}
+function edit_student(id,idno,lastname,firstname,course,level){
+	document.forms['studentform']['flag'].value = id;
+	document.forms['studentform']['idno'].value = idno;
+	document.forms['studentform']['lastname'].value = lastname;
+	document.forms['studentform']['firstname'].value = firstname;
+	document.forms['studentform']['course'].value = course;
+	document.forms['studentform']['level'].value = level;
+	/*
+	document.getElementById('idno').value=idno;
+	document.getElementById('lastname').value=lastname;
+	document.getElementById('firstname').value=firstname;
+	document.getElementById('course').value=course;
+	document.getElementById('level').value=level;
+	*/
+	document.getElementById('studentmodal').style.display='block'
+}
+function add_student(){
+	document.forms['studentform']['flag'].value = '-'
+	document.getElementById('studentmodal').style.display='block'
+}
+
 function generate_payroll(id,idno,lastname,firstname,position_desc,daily_rate){
 	document.forms['studentform']['flag'].value = id;
 	document.forms['studentform']['idno'].value = idno;
@@ -53,6 +80,20 @@ function my_f(){
 	}
 }
 
+function validate_form() 
+				 {    
+				   var dateOne = document.getElementById("date_from").value   
+				   var dateTwo = document.getElementById("date_to").value      
+				   if (dateOne > dateTwo) {    
+						alert("Date from should be earlier than Date to!");    
+						return false;
+					} else {
+					
+						
+						return true;
+					}					
+				}
+
 var today = new Date();
 
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -66,15 +107,16 @@ if(document.getElementById("date_to")!=null){
 			date_from = document.getElementById("date_from").valueAsDate;
 			date_to = document.getElementById("date_to").valueAsDate;
 
-			if(date_from.getMonth()==date_to.getMonth()){
-				day_from = date_from.getDate();
-				day_to = date_to.getDate();
+			let today_date = new Date(date_to).toISOString().slice(0, 10)
 
-				if(day_to > day_from){
-					document.getElementById("days").value = parseInt(day_to)-parseInt(day_from);
-					update_salary();
-				}
-			}
+			const startDate  = date_from;
+			const endDate    = today_date;
+
+			const diffInMs   = new Date(endDate) - new Date(startDate)
+			const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+			document.getElementById("days").value = parseInt(diffInDays);
+			update_salary();
 		}
 	})
 }
